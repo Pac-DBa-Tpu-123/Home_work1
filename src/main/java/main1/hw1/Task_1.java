@@ -25,6 +25,5 @@ public class Task_1 {
         System.out.println(minutesToSeconds("999:59"));
         System.out.println(minutesToSeconds("12:ab"));
         System.out.println(minutesToSeconds("12:09:10"));
-        System.out.println("Hellow GitHub! "+123+" Goodbuy problem!");
     }
 }
