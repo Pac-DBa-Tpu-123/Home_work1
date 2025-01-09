@@ -17,6 +17,3 @@ public class Task7 {
         return (n >>> effectiveShift) | (n << (NUMBER_OF_BITS - effectiveShift));
     }
 }
-
-
-

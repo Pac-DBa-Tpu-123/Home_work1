@@ -6,7 +6,7 @@ public class Task6 {
     }
 
     private static final int NUMBER_OF_DIGITS = 4;
-    private static final int CONST_NUMBER = 6174;
+    private static final int RESULT = 6174;
 
     public static int count(int n) {
         String numStr = String.valueOf(n);
@@ -29,7 +29,7 @@ public class Task6 {
     }
 
     private static int process(int n, int steps) {
-        if (n == CONST_NUMBER) {
+        if (n == RESULT) {
             return steps;
         }
 

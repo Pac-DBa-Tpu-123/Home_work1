@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Task8Test {
 
     @Test
+    // Проверяет, что метод возвращает true, когда ни один конь не может захватить другого
     public void testKnightBoardCaptureNoCapture() {
-        // Проверяет, что метод возвращает true, когда ни один конь не может захватить другого
         int[][] board = {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -34,8 +34,8 @@ public class Task8Test {
     }
 
     @Test
+    // Проверяет, что метод возвращает false, когда один конь может захватить другого
     public void testKnightBoardCaptureWithCapture() {
-        // Проверяет, что метод возвращает false, когда один конь может захватить другого
         int[][] board = {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -66,8 +66,8 @@ public class Task8Test {
     }
 
     @Test
+    // Проверяет, что метод возвращает true для пустой доски
     public void testKnightBoardCaptureEmptyBoard() {
-        // Проверяет, что метод возвращает true для пустой доски
         int[][] board = {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -82,8 +82,8 @@ public class Task8Test {
     }
 
     @Test
+    // Проверяет, что метод возвращает true для доски с одним конем
     public void testKnightBoardCaptureSingleKnight() {
-        // Проверяет, что метод возвращает true для доски с одним конем
         int[][] board = {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -99,8 +99,8 @@ public class Task8Test {
     }
 
     @Test
+    // Проверяет, что метод возвращает true для доски с несколькими конями, которые не могут захватить друг друга
     public void testKnightBoardCaptureMultipleKnightsNoCapture() {
-        // Проверяет, что метод возвращает true для доски с несколькими конями, которые не могут захватить друг друга
         int[][] board = {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},

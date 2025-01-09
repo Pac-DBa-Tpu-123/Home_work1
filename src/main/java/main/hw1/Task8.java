@@ -10,8 +10,8 @@ public class Task8 {
 
     public static boolean knightBoardCapture(int[][] board) {
         int[][] moves = {
-                {2, 1}, {2, -1}, {ARRAY_ELEMENT, 1}, {ARRAY_ELEMENT, -1},
-                {1, 2}, {1, ARRAY_ELEMENT}, {-1, 2}, {-1, ARRAY_ELEMENT}
+            {2, 1}, {2, -1}, {ARRAY_ELEMENT, 1}, {ARRAY_ELEMENT, -1},
+            {1, 2}, {1, ARRAY_ELEMENT}, {-1, 2}, {-1, ARRAY_ELEMENT}
         };
 
         for (int i = 0; i < CYCLE_ELEMENT; i++) {
