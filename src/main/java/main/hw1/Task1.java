@@ -2,9 +2,10 @@ package main.hw1;
 
 public final class Task1 {
 
+    private Task1() {
+    }
+
     private static final int NUMBER_OF_SECONDS = 60;
-
-
 
     public static int minutesToSeconds(String time) {
         if (time == null || !time.matches("\\d+:\\d{2}")) {

@@ -4,7 +4,8 @@ public class Task2 {
 
     private static final int CONST_NUMBER = 10;
 
-
+    private Task2() {
+    }
 
     public static int countDigits(int number) {
         if (number == 0) {
