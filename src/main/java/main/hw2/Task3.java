@@ -103,8 +103,8 @@ public class Task3 {
                 } catch (ConnectionException e) {
                     attempts++;
                     if (attempts >= maxAttempts) {
-                        throw new ConnectionException("Не удалось выполнить команду после " + maxAttempts + " попыток",
-                            e);
+                        throw new ConnectionException("Не удалось выполнить команду после "
+                            + maxAttempts + " попыток", e);
                     }
                 } catch (Exception e) {
                     throw new RuntimeException(e);

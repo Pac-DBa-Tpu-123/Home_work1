@@ -11,23 +11,23 @@ public class Task3Test {
     private Task3.PopularCommandExecutor executor;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         manager = new Task3.DefaultConnectionManager();
         executor = new Task3.PopularCommandExecutor(manager, 3);
     }
 
     @Test
-    void testUpdatePackagesSuccess() {
+    public void testUpdatePackagesSuccess() {
         executor.updatePackages();
     }
 
     @Test
-    void testTryExecuteSuccess() {
+    public void testTryExecuteSuccess() {
         executor.tryExecute("some command");
     }
 
     @Test
-    void testTryExecuteFailure() {
+    public void testTryExecuteFailure() {
         manager = new Task3.FaultyConnectionManager();
         executor = new Task3.PopularCommandExecutor(manager, 3);
 
@@ -37,7 +37,7 @@ public class Task3Test {
     }
 
     @Test
-    void testTryExecuteMixedSuccessAndFailure() {
+    public void testTryExecuteMixedSuccessAndFailure() {
         executor.tryExecute("some command");
     }
 }
