@@ -74,6 +74,22 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/au.com.dius/pact-jvm-provider-junit -->
+        <dependency>
+            <groupId>au.com.dius</groupId>
+            <artifactId>pact-jvm-provider-junit</artifactId>
+            <version>4.0.10</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.webjars.npm/before -->
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>before</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+
         <!-- Logging -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
