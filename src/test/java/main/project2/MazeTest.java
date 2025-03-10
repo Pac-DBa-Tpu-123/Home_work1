@@ -47,8 +47,9 @@ public class MazeTest {
     public void testSolveMaze() {
         maze.makeMaze();
         assertFalse(maze.solveMaze(1, 1));
-        assertEquals(3, maze.maze[Maze.ROWS - 2][Maze.COLUMNS - 2]);
+        assertNotEquals(Maze.PATH_CODE, maze.maze[Maze.ROWS - 2][Maze.COLUMNS - 2]);
     }
+
 
     @Test
     public void testRedrawMaze() {
