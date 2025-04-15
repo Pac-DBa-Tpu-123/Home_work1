@@ -16,15 +16,10 @@ public class Task6 {
             return true;
         }
 
-        StringBuilder regex = new StringBuilder();
-        for (char c : firstString.toCharArray()) {
-            regex.append(Pattern.quote(String.valueOf(c))).append(".*");
-        }
+        String regex = ".*" + Pattern.quote(firstString) + ".*";
 
-        regex.setLength(regex.length() - 2);
+        Pattern pattern = Pattern.compile(regex);
 
-        Pattern pattern = Pattern.compile(regex.toString());
-
-        return pattern.matcher(secondString).find();
+        return pattern.matcher(secondString).matches();
     }
 }

@@ -12,47 +12,90 @@ public class Task3 {
     private Task3() {
     }
 
-    public static Optional<LocalDate> parseDate(String string) {
-        if (string == null || string.isEmpty()) {
+    public static Optional<LocalDate> parseDate(String date) {
+        if (date == null || date.isEmpty()) {
             return Optional.empty();
         }
 
-        DateTimeFormatter[] formatters = {
+        DateHandler fixedFormatHandler = new FixedFormatDateHandler();
+        DateHandler relativeDateHandler = new RelativeDateHandler();
+        DateHandler daysAgoDateHandler = new DaysAgoDateHandler();
+
+        fixedFormatHandler.setNextHandler(relativeDateHandler);
+        relativeDateHandler.setNextHandler(daysAgoDateHandler);
+
+        return fixedFormatHandler.handle(date);
+    }
+
+    private interface DateHandler {
+        Optional<LocalDate> handle(String date);
+
+        void setNextHandler(DateHandler nextHandler);
+    }
+
+    private abstract static class AbstractDateHandler implements DateHandler {
+        private DateHandler nextHandler;
+
+        @Override
+        public void setNextHandler(DateHandler nextHandler) {
+            this.nextHandler = nextHandler;
+        }
+
+        protected Optional<LocalDate> handleNext(String date) {
+            if (nextHandler != null) {
+                return nextHandler.handle(date);
+            }
+            return Optional.empty();
+        }
+    }
+
+    private static class FixedFormatDateHandler extends AbstractDateHandler {
+        private final DateTimeFormatter[] formatters = {
             DateTimeFormatter.ofPattern("yyyy-MM-dd"),
             DateTimeFormatter.ofPattern("yyyy-M-d"),
             DateTimeFormatter.ofPattern("M/d/yyyy"),
             DateTimeFormatter.ofPattern("M/d/yy")
         };
 
-        for (DateTimeFormatter formatter : formatters) {
-            try {
-                return Optional.of(LocalDate.parse(string, formatter));
-            } catch (DateTimeParseException ignored) {
+        @Override
+        public Optional<LocalDate> handle(String date) {
+            for (DateTimeFormatter formatter : formatters) {
+                try {
+                    return Optional.of(LocalDate.parse(date, formatter));
+                } catch (DateTimeParseException ignored) {
+                }
+            }
+            return handleNext(date);
+        }
+    }
+
+    private static class RelativeDateHandler extends AbstractDateHandler {
+        @Override
+        public Optional<LocalDate> handle(String date) {
+            switch (date.toLowerCase()) {
+                case "today":
+                    return Optional.of(LocalDate.now());
+                case "tomorrow":
+                    return Optional.of(LocalDate.now().plusDays(1));
+                case "yesterday":
+                    return Optional.of(LocalDate.now().minusDays(1));
+                default:
+                    return handleNext(date);
             }
         }
+    }
 
-        Optional<LocalDate> result = Optional.empty();
+    private static class DaysAgoDateHandler extends AbstractDateHandler {
+        private final Pattern daysAgoPattern = Pattern.compile("(\\d+) days? ago");
 
-        switch (string.toLowerCase()) {
-            case "today":
-                result = Optional.of(LocalDate.now());
-                break;
-            case "tomorrow":
-                result = Optional.of(LocalDate.now().plusDays(1));
-                break;
-            case "yesterday":
-                result = Optional.of(LocalDate.now().minusDays(1));
-                break;
-            default:
-                Pattern daysAgoPattern = Pattern.compile("(\\d+) days? ago");
-                Matcher matcher = daysAgoPattern.matcher(string.toLowerCase());
-                if (matcher.matches()) {
-                    int daysAgo = Integer.parseInt(matcher.group(1));
-                    result = Optional.of(LocalDate.now().minusDays(daysAgo));
-                }
-                break;
+        @Override
+        public Optional<LocalDate> handle(String date) {
+            Matcher matcher = daysAgoPattern.matcher(date.toLowerCase());
+            if (matcher.matches()) {
+                int daysAgo = Integer.parseInt(matcher.group(1));
+                return Optional.of(LocalDate.now().minusDays(daysAgo));
+            }
+            return handleNext(date);
         }
-
-        return result;
     }
 }
